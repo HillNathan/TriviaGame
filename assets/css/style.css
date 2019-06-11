@@ -1,0 +1,58 @@
+body {
+    background: url("../images/80s-90s-abstract-background-1971425-scaled.jpg");
+}
+
+.rock-salt {
+    font-family: 'Rock Salt', cursive;
+}
+
+.gochi {
+    font-family: 'Gochi Hand', cursive;
+}
+
+.sedgwick {
+    font-family: 'Sedgwick Ave', cursive;
+}
+
+.dark-back {
+    background-color: rgb(18,39,75,.7);
+}
+
+.header {
+    text-align: center;
+    color: #c458c0;
+    font-size: 36pt;
+}
+
+#display-div {
+    color: #12eb4b;
+    font-size: 26pt;
+    font-weight: bold;
+    text-align: center;
+    min-height: 300px;
+}
+
+.start-button {
+    margin:auto;
+    text-align: center;
+    background-color: #f6a4ce;
+    
+}
+.start-button:hover {
+    background-color: #f687b1;
+}
+
+.response-div {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.response-btn {
+    width: 250px;
+    text-align: center;
+    background-color: #2dd1d1;
+}
+.response-btn:hover { 
+    background-color: #2db5b8;
+}

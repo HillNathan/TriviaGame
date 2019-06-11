@@ -9,18 +9,60 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
           crossorigin="anonymous">
-    <link rel="stylesheet" 
-          href="assets/css/style.css" 
-          type="text/css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Rock+Salt|Sedgwick+Ave&display=swap" rel="stylesheet">
     
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
-    <script src="assets/javascript/app.js"
-            type="text/jquery"></script>
+    <script src="assets/javascript/trivia.js"></script>
+    <script src="assets/javascript/app.js"></script>
 
 </head>
 <body>
-    
+<div class="container">
+      <div class="row"><div class="col">
+      <div class="header rock-salt p-3 m-1 dark-back">
+            Nate's Grunge Music Trivia Game!!!
+      </div></div></div>
+
+      <div class="row">
+            <div class="col">
+                  <div id="display-div" class="gochi dark-back p-4 m-1">
+                        Using this as placeholder text for instruction text, a welcome message, and probably a button to get the whole game started. 
+                        <br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nam ipsam est aperiam laborum explicabo asperiores, ducimus voluptatibus blanditiis facilis earum quidem deserunt delectus quaerat repellat ab doloremque! Recusandae, impedit?
+                        <hr>
+                        <button class="start-button btn btn-lg sedgwick">Start!</button>
+                  </div>
+            </div>
+      </div>
+      <div class="row dark-back m-1">
+            <div class="col">
+                  <div class="row">
+                        <div class="col response-div">
+                              <button class="response-btn btn btn-lg sedgwick" id="button-1">Response 1</button>
+                        </div></div>
+                  <div class="row">
+                        <div class="col response-div">
+                              <button class="response-btn btn btn-lg sedgwick" id="button-3">Response 3</button>
+                        </div>
+                  </div>
+            </div>
+            <div class="col">
+                        <div class="row">
+                              <div class="col response-div">
+                                    <button class="response-btn btn btn-lg sedgwick" id="button-2">Response 2</button>
+                              </div></div>
+                        <div class="row">
+                              <div class="col response-div">
+                                    <button class="response-btn btn btn-lg sedgwick" id="button-4">Response 4</button>
+                              </div>
+                        </div>
+                  </div>
+
+      </div>
+      
+</div>      
 </body>
 </html>
