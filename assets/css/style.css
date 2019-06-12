@@ -30,6 +30,7 @@ body {
     font-weight: bold;
     text-align: center;
     min-height: 300px;
+    
 }
 
 .start-button {
@@ -49,10 +50,16 @@ body {
 }
 
 .response-btn {
-    width: 400px;
+    width: 300px;
     text-align: center;
     background-color: #2dd1d1;
+    display: none;
 }
 .response-btn:hover { 
     background-color: #2db5b8;
+}
+
+.answer-text {
+    color: #f7b505;
+    font-size: 36pt;
 }
