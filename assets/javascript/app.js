@@ -14,10 +14,9 @@ $(document).ready(function() {
         response4: $("#button-4"),
         answerButtons: $(".response-btn"),
         startButton: $(".start-button"),
-        gameOverClip: $("#game-over-clip"),
+        // gameOverClip: $("#game-over-clip"),
 
         resetGame: function() {
-            console.log("code to reset the game goes here....");
             this.correct = 0;
             this.wrong = 0;
             this.noAnswer = 0;
@@ -34,11 +33,6 @@ $(document).ready(function() {
 
     var questionTimeout;
     var answerTimeout;
-
-    // for (i=0; i<TriviaQuestions.length; i++) {
-    //     gameObj.questionOrder.push(i);
-    // }
-    // shuffle(gameObj.questionOrder);
 
     gameObj.startButton.click(function() {
         if (gameObj.gameOver) {
@@ -68,19 +62,18 @@ $(document).ready(function() {
             if (gameObj.questionOrder.length !== 0) {
                 gameObj.questionNum = gameObj.questionOrder.pop()
                 gameObj.questionDisplay.html(TriviaQuestions[gameObj.questionNum].theQuestion);
-                gameObj.response1.text(TriviaQuestions[gameObj.questionNum].opt1);
-                gameObj.response2.text(TriviaQuestions[gameObj.questionNum].opt2);
-                gameObj.response3.text(TriviaQuestions[gameObj.questionNum].opt3);
-                gameObj.response4.text(TriviaQuestions[gameObj.questionNum].opt4);
+                gameObj.response1.text(TriviaQuestions[gameObj.questionNum].opt1).attr("value", TriviaQuestions[gameObj.questionNum].opt1);
+                gameObj.response2.text(TriviaQuestions[gameObj.questionNum].opt2).attr("value", TriviaQuestions[gameObj.questionNum].opt2);
+                gameObj.response3.text(TriviaQuestions[gameObj.questionNum].opt3).attr("value", TriviaQuestions[gameObj.questionNum].opt3);
+                gameObj.response4.text(TriviaQuestions[gameObj.questionNum].opt4).attr("value", TriviaQuestions[gameObj.questionNum].opt4);
                 questionTimeout = setTimeout( function() {
                     noGuess();
-                }, 5000 );
+                }, 15000 );
             }
             else {
                 gameObj.gameOver = true;
-                gameOverClip.play();
+                // gameOverClip.play();
                 gameObj.questionDisplay.html("<span class='answer-text'>Game Over</span>" + 
-                // "<p>Questions Asked: " + numQuestions + "</p>" + 
                 "<p>Correct answers: " + gameObj.correct + "</p>" + 
                 "<p>Wrong answers: " + gameObj.wrong + "</p>" + 
                 "<p>Questions missed: " + gameObj.noAnswer + "</p>" 
@@ -102,7 +95,8 @@ $(document).ready(function() {
                 gameObj.correct++;
             }
             else {
-                gameObj.questionDisplay.html("<span class='answer-text'>You have chosen poorly.</span>");
+                gameObj.questionDisplay.html("<span class='answer-text'>You have chosen poorly.</span>" +
+                "<br><p>The correct answer was " + TriviaQuestions[gameObj.questionNum].correct + ".");
                 console.log("You have chosen poorly.");
                 gameObj.wrong++
             }
@@ -113,7 +107,8 @@ $(document).ready(function() {
     function noGuess() {
         if (!answerTimeout) {
             questionTimeout = undefined;
-            gameObj.questionDisplay.html("<span class='answer-text'>You're out of time for this one.</span>");
+            gameObj.questionDisplay.html("<span class='answer-text'>You're out of time for this one.</span>" +
+            "<br><p>The correct answer was " + TriviaQuestions[gameObj.questionNum].correct + ".");
             console.log("Time is up!");
             gameObj.noAnswer++;
         }
