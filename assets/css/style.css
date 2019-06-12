@@ -33,8 +33,11 @@ body {
     
 }
 
+.button-div {
+    text-align: center;
+}
+
 .start-button {
-    margin:auto;
     text-align: center;
     background-color: #f6a4ce;
     

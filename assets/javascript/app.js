@@ -3,68 +3,91 @@ $(document).ready(function() {
     var gameObj = {
         questionDisplay: $("#display-div"),
         questionNum: 0,
+        questionOrder: [],
+        correct: 0,
+        wrong: 0,
+        noAnswer: 0,
+        gameOver: true,
+        response1: $("#button-1"),
+        response2: $("#button-2"),
+        response3: $("#button-3"),
+        response4: $("#button-4"),
+        answerButtons: $(".response-btn"),
+        startButton: $(".start-button"),
+        gameOverClip: $("#game-over-clip"),
+
+        resetGame: function() {
+            console.log("code to reset the game goes here....");
+            this.correct = 0;
+            this.wrong = 0;
+            this.noAnswer = 0;
+            this.gameOver = false;
+            this.questionOrder = [];
+            this.questionNum = 0;
+
+            for (i=0; i<TriviaQuestions.length; i++) {
+                this.questionOrder.push(i);
+            }
+            shuffle(this.questionOrder);
+        }
     }
 
     var questionTimeout;
     var answerTimeout;
-    var numQuestions = 0;
-    var correct = 0;
-    var wrong = 0;
-    var noAnswer = 0;
-    var response1 = $("#button-1");
-    var response2 = $("#button-2");
-    var response3 = $("#button-3");
-    var response4 = $("#button-4");
 
+    // for (i=0; i<TriviaQuestions.length; i++) {
+    //     gameObj.questionOrder.push(i);
+    // }
+    // shuffle(gameObj.questionOrder);
 
-    var questionOrder = [];
-    for (i=0; i<TriviaQuestions.length; i++) {
-        questionOrder.push(i);
-    }
-    shuffle(questionOrder);
-    numQuestions = questionOrder.length;
-
-    $(".start-button").click(function() {
+    gameObj.startButton.click(function() {
+        if (gameObj.gameOver) {
+            gameObj.resetGame();
+        }
         getQuestion();
     });
 
-    response1.click(function() {
+    gameObj.response1.click(function() {
         checkGuess(this.value); 
     })
-    response2.click(function() {
+    gameObj.response2.click(function() {
         checkGuess(this.value);
     })
-    response3.click(function() {
+    gameObj.response3.click(function() {
         checkGuess(this.value);
     })
-    response4.click(function() {
+    gameObj.response4.click(function() {
         checkGuess(this.value);
     })
 
     function getQuestion() {    
         if (!questionTimeout) {
             answerTimeout = undefined;
-            $(".response-btn").show();
-            if (questionOrder.length !== 0) {
-                gameObj.questionNum = questionOrder.pop()
+            gameObj.startButton.hide();
+            gameObj.answerButtons.show();
+            if (gameObj.questionOrder.length !== 0) {
+                gameObj.questionNum = gameObj.questionOrder.pop()
                 gameObj.questionDisplay.html(TriviaQuestions[gameObj.questionNum].theQuestion);
-                response1.text(TriviaQuestions[gameObj.questionNum].opt1);
-                response2.text(TriviaQuestions[gameObj.questionNum].opt2);
-                response3.text(TriviaQuestions[gameObj.questionNum].opt3);
-                response4.text(TriviaQuestions[gameObj.questionNum].opt4);
+                gameObj.response1.text(TriviaQuestions[gameObj.questionNum].opt1);
+                gameObj.response2.text(TriviaQuestions[gameObj.questionNum].opt2);
+                gameObj.response3.text(TriviaQuestions[gameObj.questionNum].opt3);
+                gameObj.response4.text(TriviaQuestions[gameObj.questionNum].opt4);
                 questionTimeout = setTimeout( function() {
                     noGuess();
                 }, 5000 );
             }
             else {
+                gameObj.gameOver = true;
+                gameOverClip.play();
                 gameObj.questionDisplay.html("<span class='answer-text'>Game Over</span>" + 
                 // "<p>Questions Asked: " + numQuestions + "</p>" + 
-                "<p>Correct answers: " + correct + "</p>" + 
-                "<p>Wrong answers: " + wrong + "</p>" + 
-                "<p>Questions missed: " + noAnswer + "</p>" + 
-                "<br><button class='start-button btn btn-lg sedgwick' id='play-again'>Play again!</button>"
+                "<p>Correct answers: " + gameObj.correct + "</p>" + 
+                "<p>Wrong answers: " + gameObj.wrong + "</p>" + 
+                "<p>Questions missed: " + gameObj.noAnswer + "</p>" 
                 );
-                $(".response-btn").hide();
+                gameObj.answerButtons.hide();
+                gameObj.startButton.text("Play Again!");
+                gameObj.startButton.show();
             }
         }
     }
@@ -75,14 +98,13 @@ $(document).ready(function() {
             questionTimeout = undefined;
             if (myGuess === TriviaQuestions[gameObj.questionNum].correct) {
                 console.log("You have chosen wisely.");
-                // questionDisplay.empty();
                 gameObj.questionDisplay.html("<span class='answer-text'>You have chosen wisely.</span>");
-                correct++;
+                gameObj.correct++;
             }
             else {
                 gameObj.questionDisplay.html("<span class='answer-text'>You have chosen poorly.</span>");
                 console.log("You have chosen poorly.");
-                wrong++
+                gameObj.wrong++
             }
             answerTimeout = setTimeout(getQuestion, 3000);
         }
@@ -91,13 +113,12 @@ $(document).ready(function() {
     function noGuess() {
         if (!answerTimeout) {
             questionTimeout = undefined;
-            questionDisplay.html("<span class='answer-text'>You're out of time for this one.</span>");
+            gameObj.questionDisplay.html("<span class='answer-text'>You're out of time for this one.</span>");
             console.log("Time is up!");
-            noAnswer++;
+            gameObj.noAnswer++;
         }
         answerTimeout = setTimeout(getQuestion, 3000);
     }
-
 
 
 
