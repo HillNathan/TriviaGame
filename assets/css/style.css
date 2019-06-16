@@ -66,3 +66,18 @@ body {
     color: #f7b505;
     font-size: 36pt;
 }
+
+.container{
+    margin-bottom:45px;
+}
+
+.my-footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(18,39,75);
+    color: #f7b505;
+    height: 40px;
+    font-size: 16pt;
+}

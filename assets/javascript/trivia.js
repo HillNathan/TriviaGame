@@ -88,7 +88,7 @@ var TriviaQuestions = [
         correct: 'Black Hole Sun' },
 
     // Question #12
-    { theQuestion: "What singer joined the remaining memers of Mother Love Bone to form the band Pearl Jam?",
+    { theQuestion: "What singer joined the remaining members of Mother Love Bone to form the band Pearl Jam?",
         opt1: 'Chris Cornell',
         opt2: 'Scott Weiland',
         opt3: 'Andrew Wood',
