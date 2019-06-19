@@ -29,7 +29,7 @@ $(document).ready(function() {
 
             // the code below selects 10 random questions from the number of questions we have in TriviaQuestions
             var notUnique = false;
-            for (i=0; i<10; i++) {
+            for (i=0; i<15; i++) {
                 notUnique = false;
                 do {     
                     // loops as long as the temp value is not unique. If temp is a unique value then it does not loop at all
